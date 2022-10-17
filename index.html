@@ -14,11 +14,17 @@
         <p>Time: 0</p>
     </header>
     <main>
-        <section class="prompt" data-state="visible">
+        <section id = "start-screen" class="prompt" data-state="visible">
             <h1>Baseball Quiz</h1>
             <p>Try to answer the following baseball questions within the time limit. Keep in mind that wrong answers will penalize your score/time by ten seconds!</p>
             <button class="startBtn">Start Quiz</button>
         </section>
+<section id="quiz-holder" class="prompt hide">
+    <h1 id ="question-element"></h1>
+    <div id = "answer-holder">
+    </div>
+</section>
+
     </main>
     <script src="assets/script.js"></script>
   </body>
