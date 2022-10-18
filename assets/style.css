@@ -4,6 +4,27 @@ header {
     justify-content: space-between;
 }
 
+body{
+    /* background-image: url(../assets/Images/Stadium.jpeg);
+    background-size: 100%;
+    background-repeat: no-repeat; */
+}
+
+button {
+   background-color: white; 
+   font-size: 20px;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+}
+
+#answer-holder{
+    display: flex;
+    flex-direction: column;
+}
+
 .prompt {
     display: flex;
     flex-direction: column;

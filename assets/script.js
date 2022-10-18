@@ -1,7 +1,8 @@
-var prompt = document.querySelector("#start-screen");
+var quizPrompt = document.querySelector("#start-screen");
 var startBtn = document.querySelector(".startBtn");
-console.log(prompt);
+console.log(quizPrompt);
 console.log(startBtn);
+var timeLeft = document.querySelector("#time-left")
 var questionsBase = [
   {
     question: "Who led MLB in homeruns in 2022?",
@@ -56,10 +57,11 @@ var questionsBase = [
 ];
 
 var questionIdx = 0;
+
 //function to ask quiz questions and allow user to select answer
 function startQuiz() {
   console.log("starting quiz");
-  prompt.classList.add("hide");
+  quizPrompt.classList.add("hide");
   var quizSection = document.querySelector("#quiz-holder");
   quizSection.classList.remove("hide");
   displayQuestion();
@@ -84,7 +86,16 @@ function displayQuestion() {
 
 function checkIfRight(event){
     event.preventDefault()
-    console.log(event.target)
+    console.log(event.target.innerHTML)
+    var currentQuestion = questionsBase[questionIdx];
+    console.log(currentQuestion)
+    var answer = event.target.innerHTML
+console.log(answer, questionsBase[questionIdx].correct)
+    if (answer === questionsBase[questionIdx].correct){
+        alert("correct!")
+    } else{
+        alert("wrong, you suck")
+    }
     //need to know which question we're at
     //need to know the text the content of the button that was clicked
     //check if you're don with the quiz
