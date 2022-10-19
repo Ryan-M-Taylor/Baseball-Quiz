@@ -129,7 +129,8 @@ function checkIfRight(event) {
 
 function checkIfOver() {
   // if the quiz is Over
-  if (questionIdx === questionsBase.length) {
+  if (questionIdx === (questionsBase.length - 1)) {
+    clearInterval(timer);
     return endQuiz();
   } else {
     questionIdx++;
