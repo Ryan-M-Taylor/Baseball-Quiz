@@ -7,6 +7,7 @@ var leaderBoard = document.querySelector(".leader-board");
 var scoreList = document.querySelector("#score-list");
 var nameInput = document.querySelector("#name");
 var scoreForm = document.querySelector("#score-form");
+var submitButton = document.querySelector(".submit-button")
 
 var timer = "";
 var timerCount = 60;
@@ -164,10 +165,6 @@ function renderScores(){
         li.textContent = leader;
         li.setAttribute("data-index", i);
         
-        var button = document.createElement("button");
-        button.textContent = "Complete ✔️";
-        
-        li.appendChild(button);
         scoreList.appendChild(li);
       }
 }
@@ -178,7 +175,7 @@ function renderScores(){
 //   }
 
   // TODO: Describe the purpose of the following line of code.
-  scoreForm.addEventListener("submit", function(event) {
+  submitButton.addEventListener("click", function(event) {
     event.preventDefault();
     var nameText = nameInput.value.trim();
    
