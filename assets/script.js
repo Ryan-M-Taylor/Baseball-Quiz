@@ -5,6 +5,8 @@ var highScores = document.querySelector("#high-scores");
 var quizSection = document.querySelector("#quiz-holder");
 var leaderBoard = document.querySelector(".leader-board");
 var scoreList = document.querySelector("#score-list");
+var nameInput = document.querySelector("#name");
+var scoreForm = document.querySelector("#score-form");
 
 var timer = "";
 var timerCount = 60;
@@ -170,5 +172,24 @@ function renderScores(){
       }
 }
 
+// function storeScores() {
+//     // TODO: Describe the purpose of the following line of code.
+//     localStorage.setItem("todos", JSON.stringify(todos));
+//   }
+
+  // TODO: Describe the purpose of the following line of code.
+  scoreForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var nameText = nameInput.value.trim();
+   
+    leaders.push(nameText);
+    nameInput.value = "";
+
+    renderScores();
+  });
+
 //Starts quiz when button is clicked
 startBtn.addEventListener("click", startQuiz);
+
+//when user enters name, it needs to be added to high score list
+//
