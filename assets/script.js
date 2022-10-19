@@ -7,7 +7,8 @@ var leaderBoard = document.querySelector(".leader-board");
 var scoreList = document.querySelector("#score-list");
 var nameInput = document.querySelector("#name");
 var scoreForm = document.querySelector("#score-form");
-var submitButton = document.querySelector(".submit-button")
+var submitButton = document.querySelector(".submit-button");
+var timeSection = document.querySelector("#time-left");
 
 var timer = "";
 var timerCount = 60;
@@ -88,6 +89,7 @@ var questionIdx = 0;
 function startQuiz() {
   quizPrompt.classList.add("hide");
   quizSection.classList.remove("hide");
+  timeSection.classList.remove("hide");
 
   timer = setInterval(function () {
     if (timerCount > 0) {
@@ -151,8 +153,6 @@ function endQuiz() {
   console.log("ended");
   quizSection.classList.add("hide");
   highScores.classList.remove("hide");
-  renderScores();
-  console.log(renderScores);
 }
 
 function renderScores(){
@@ -169,10 +169,21 @@ function renderScores(){
       }
 }
 
-// function storeScores() {
-//     // TODO: Describe the purpose of the following line of code.
-//     localStorage.setItem("todos", JSON.stringify(todos));
-//   }
+function init() {
+    // TODO: What is the purpose of the following line of code?
+    var storedLeaders = JSON.parse(localStorage.getItem("todos"));
+    // TODO: Describe the functionality of the following `if` statement.
+    if (storedLeaders !== null) {
+      leaders = storedLeaders;
+    }
+    // TODO: Describe the purpose of the following line of code.
+    renderScores();
+  }
+
+function storeScores() {
+    // TODO: Describe the purpose of the following line of code.
+    localStorage.setItem("highscores", JSON.stringify(leaders));
+  }
 
   // TODO: Describe the purpose of the following line of code.
   submitButton.addEventListener("click", function(event) {
@@ -183,10 +194,10 @@ function renderScores(){
     nameInput.value = "";
 
     renderScores();
+    storeScores();
   });
 
 //Starts quiz when button is clicked
 startBtn.addEventListener("click", startQuiz);
 
-//when user enters name, it needs to be added to high score list
-//
+init();
