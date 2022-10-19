@@ -3,9 +3,14 @@ var startBtn = document.querySelector(".startBtn");
 var timeLeft = document.querySelector("#time-left");
 var highScores = document.querySelector("#high-scores");
 var quizSection = document.querySelector("#quiz-holder");
+var leaderBoard = document.querySelector(".leader-board");
+var scoreList = document.querySelector("#score-list");
+
 var timer = "";
 var timerCount = 60;
 var gameEnd = true;
+var correctAnswers = 0;
+var leaders = [];
 var questionsBase = [
   {
     question: "Who led MLB in homeruns in 2022?",
@@ -119,6 +124,7 @@ function checkIfRight(event) {
   console.log(answer, questionsBase[questionIdx].correct);
   if (answer === questionsBase[questionIdx].correct) {
     alert("Correct! Good Job!");
+    correctAnswers++;
   } else {
     alert("That is incorrect! You lost 10 seconds!");
     timerCount -= 10;
@@ -142,6 +148,26 @@ function endQuiz() {
   console.log("ended");
   quizSection.classList.add("hide");
   highScores.classList.remove("hide");
+  renderScores();
+  console.log(renderScores);
+}
+
+function renderScores(){
+    scoreList.innerHTML = "";
+    
+    for (var i = 0; i < leaders.length; i++) {
+        var leader = leaders[i];
+    
+        var li = document.createElement("li");
+        li.textContent = leader;
+        li.setAttribute("data-index", i);
+        
+        var button = document.createElement("button");
+        button.textContent = "Complete ✔️";
+        
+        li.appendChild(button);
+        scoreList.appendChild(li);
+      }
 }
 
 //Starts quiz when button is clicked
