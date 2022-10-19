@@ -1,6 +1,8 @@
 var quizPrompt = document.querySelector("#start-screen");
 var startBtn = document.querySelector(".startBtn");
 var timeLeft = document.querySelector("#time-left");
+var highScores = document.querySelector("#high-scores");
+var quizSection = document.querySelector("#quiz-holder");
 var timer = "";
 var timerCount = 60;
 var gameEnd = true;
@@ -20,56 +22,56 @@ var questionsBase = [
     correct: "Mets",
     choices: ["Yankees", "Mets", "Orioles", "Angels"],
   },
-  {
-    question: "Which team won the 2021 World Series?",
-    correct: "Braves",
-    choices: ["Dodgers", "Astros", "Cardinals", "Braves"],
-  },
-  {
-    question: "What milestone did Albert Pujols achieve in 2022?",
-    correct: "700 career homeruns",
-    choices: [
-      "3000 hits",
-      "Most games ever played",
-      "700 career homeruns",
-      "Most RBIs in MLB history",
-    ],
-  },
-  {
-    question: "Who has the record for most career homeruns?",
-    correct: "Barry Bonds",
-    choices: ["Barry Bonds", "Babe Ruth", "Albert Pujols", "Hank Aaron"],
-  },
-  {
-    question: "Who won the Homerun Derby in 2022?",
-    correct: "Juan Soto",
-    choices: ["Julio Rodriguez", "Juan Soto", "Aaron Judge", "Albert Pujols"],
-  },
-  {
-    question: "What team had the highest total attendance in 2022?",
-    correct: "Dodgers",
-    choices: ["Yankees", "Cardinals", "Dodgers", "Braves"],
-  },
-  {
-    question: "What team is not in the National League?",
-    correct: "Astros",
-    choices: ["Giants", "Astros", "Padres", "Marlins"],
-  },
-  {
-    question: "Who led MLB in strikeouts in 2022?",
-    correct: "Gerrit Cole",
-    choices: [
-      "Shohei Ohtani",
-      "Justin Verlander",
-      "Gerrit Cole",
-      "Clayton Kershaw",
-    ],
-  },
-  {
-    question: "Who has the most hits in MLB history?",
-    correct: "Pete Rose",
-    choices: ["Pete Rose", "Ty Cobb", "Derek Jeter", "Ichiro Suzuki"],
-  },
+//   {
+//     question: "Which team won the 2021 World Series?",
+//     correct: "Braves",
+//     choices: ["Dodgers", "Astros", "Cardinals", "Braves"],
+//   },
+//   {
+//     question: "What milestone did Albert Pujols achieve in 2022?",
+//     correct: "700 career homeruns",
+//     choices: [
+//       "3000 hits",
+//       "Most games ever played",
+//       "700 career homeruns",
+//       "Most RBIs in MLB history",
+//     ],
+//   },
+//   {
+//     question: "Who has the record for most career homeruns?",
+//     correct: "Barry Bonds",
+//     choices: ["Barry Bonds", "Babe Ruth", "Albert Pujols", "Hank Aaron"],
+//   },
+//   {
+//     question: "Who won the Homerun Derby in 2022?",
+//     correct: "Juan Soto",
+//     choices: ["Julio Rodriguez", "Juan Soto", "Aaron Judge", "Albert Pujols"],
+//   },
+//   {
+//     question: "What team had the highest total attendance in 2022?",
+//     correct: "Dodgers",
+//     choices: ["Yankees", "Cardinals", "Dodgers", "Braves"],
+//   },
+//   {
+//     question: "What team is not in the National League?",
+//     correct: "Astros",
+//     choices: ["Giants", "Astros", "Padres", "Marlins"],
+//   },
+//   {
+//     question: "Who led MLB in strikeouts in 2022?",
+//     correct: "Gerrit Cole",
+//     choices: [
+//       "Shohei Ohtani",
+//       "Justin Verlander",
+//       "Gerrit Cole",
+//       "Clayton Kershaw",
+//     ],
+//   },
+//   {
+//     question: "Who has the most hits in MLB history?",
+//     correct: "Pete Rose",
+//     choices: ["Pete Rose", "Ty Cobb", "Derek Jeter", "Ichiro Suzuki"],
+//   },
 ];
 
 var questionIdx = 0;
@@ -77,20 +79,19 @@ var questionIdx = 0;
 //function to ask quiz questions and allow user to select answer
 function startQuiz() {
   quizPrompt.classList.add("hide");
-  var quizSection = document.querySelector("#quiz-holder");
   quizSection.classList.remove("hide");
 
   timer = setInterval(function () {
     if (timerCount > 0) {
       timerCount--;
       timeLeft.textContent = timerCount;
-    } else if ((timerCount = 0)) {
+    } else if ((timerCount <= 0)) {
       alert("Time's Up!!!");
+      clearInterval(timer);
       return endQuiz();
     }
-
-    displayQuestion();
   }, 1000);
+  displayQuestion();
 }
 
 function displayQuestion() {
@@ -138,6 +139,8 @@ function checkIfOver() {
 
 function endQuiz() {
   console.log("ended");
+  quizSection.classList.add("hide");
+  highScores.classList.remove("hide");
 }
 
 //Starts quiz when button is clicked

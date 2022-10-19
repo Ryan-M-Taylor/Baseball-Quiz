@@ -10,21 +10,27 @@
 
   <body>
     <header>
-        <p>View Highscores</p>
-        <p id = "time-left">Time: </p>
+      <p>View Highscores</p>
+      <p id="time-left">Time:</p>
     </header>
     <main>
-        <section id = "start-screen" class="prompt">
-            <h1>Baseball Quiz</h1>
-            <p>Try to answer the following baseball questions within the time limit. Keep in mind that wrong answers will penalize your score/time by ten seconds!</p>
-            <button class="startBtn">Start Quiz</button>
-        </section>
-<section id="quiz-holder" class="prompt hide">
-    <h1 id ="question-element"></h1>
-    <div id = "answer-holder">
-    </div>
-</section>
-
+      <section id="start-screen" class="prompt">
+        <h1>Baseball Quiz</h1>
+        <p>
+          Try to answer the following baseball questions within the time limit.
+          Keep in mind that wrong answers will penalize your score/time by ten
+          seconds!
+        </p>
+        <button class="startBtn">Start Quiz</button>
+      </section>
+      <section id="quiz-holder" class="prompt hide">
+        <h1 id="question-element"></h1>
+        <div id="answer-holder"></div>
+      </section>
+      <section id="high-scores" class="prompt hide">
+        <h1>Highscores</h1>
+      </section>
     </main>
     <script src="assets/script.js"></script>
   </body>
+</html>
