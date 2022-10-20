@@ -10,4 +10,4 @@ This is a baseball quiz application. The user is given 100 seconds to answer 10 
 
 ## Link to application
 
-This site was built using [GitHub Pages]()
+This site was built using [GitHub Pages](https://ryan-m-taylor.github.io/Code-Quiz/)
