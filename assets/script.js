@@ -11,7 +11,7 @@ var submitButton = document.querySelector(".submit-button");
 var timeSection = document.querySelector("#time-left");
 
 var timer = "";
-var timerCount = 60;
+var timerCount = 100;
 var gameEnd = true;
 var correctAnswers = 0;
 var leaders = [];
