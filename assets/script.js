@@ -31,56 +31,56 @@ var questionsBase = [
     correct: "Mets",
     choices: ["Yankees", "Mets", "Orioles", "Angels"],
   },
-//   {
-//     question: "Which team won the 2021 World Series?",
-//     correct: "Braves",
-//     choices: ["Dodgers", "Astros", "Cardinals", "Braves"],
-//   },
-//   {
-//     question: "What milestone did Albert Pujols achieve in 2022?",
-//     correct: "700 career homeruns",
-//     choices: [
-//       "3000 hits",
-//       "Most games ever played",
-//       "700 career homeruns",
-//       "Most RBIs in MLB history",
-//     ],
-//   },
-//   {
-//     question: "Who has the record for most career homeruns?",
-//     correct: "Barry Bonds",
-//     choices: ["Barry Bonds", "Babe Ruth", "Albert Pujols", "Hank Aaron"],
-//   },
-//   {
-//     question: "Who won the Homerun Derby in 2022?",
-//     correct: "Juan Soto",
-//     choices: ["Julio Rodriguez", "Juan Soto", "Aaron Judge", "Albert Pujols"],
-//   },
-//   {
-//     question: "What team had the highest total attendance in 2022?",
-//     correct: "Dodgers",
-//     choices: ["Yankees", "Cardinals", "Dodgers", "Braves"],
-//   },
-//   {
-//     question: "What team is not in the National League?",
-//     correct: "Astros",
-//     choices: ["Giants", "Astros", "Padres", "Marlins"],
-//   },
-//   {
-//     question: "Who led MLB in strikeouts in 2022?",
-//     correct: "Gerrit Cole",
-//     choices: [
-//       "Shohei Ohtani",
-//       "Justin Verlander",
-//       "Gerrit Cole",
-//       "Clayton Kershaw",
-//     ],
-//   },
-//   {
-//     question: "Who has the most hits in MLB history?",
-//     correct: "Pete Rose",
-//     choices: ["Pete Rose", "Ty Cobb", "Derek Jeter", "Ichiro Suzuki"],
-//   },
+  {
+    question: "Which team won the 2021 World Series?",
+    correct: "Braves",
+    choices: ["Dodgers", "Astros", "Cardinals", "Braves"],
+  },
+  {
+    question: "What milestone did Albert Pujols achieve in 2022?",
+    correct: "700 career homeruns",
+    choices: [
+      "3000 hits",
+      "Most games ever played",
+      "700 career homeruns",
+      "Most RBIs in MLB history",
+    ],
+  },
+  {
+    question: "Who has the record for most career homeruns?",
+    correct: "Barry Bonds",
+    choices: ["Barry Bonds", "Babe Ruth", "Albert Pujols", "Hank Aaron"],
+  },
+  {
+    question: "Who won the Homerun Derby in 2022?",
+    correct: "Juan Soto",
+    choices: ["Julio Rodriguez", "Juan Soto", "Aaron Judge", "Albert Pujols"],
+  },
+  {
+    question: "What team had the highest total attendance in 2022?",
+    correct: "Dodgers",
+    choices: ["Yankees", "Cardinals", "Dodgers", "Braves"],
+  },
+  {
+    question: "What team is not in the National League?",
+    correct: "Astros",
+    choices: ["Giants", "Astros", "Padres", "Marlins"],
+  },
+  {
+    question: "Who led MLB in strikeouts in 2022?",
+    correct: "Gerrit Cole",
+    choices: [
+      "Shohei Ohtani",
+      "Justin Verlander",
+      "Gerrit Cole",
+      "Clayton Kershaw",
+    ],
+  },
+  {
+    question: "Who has the most hits in MLB history?",
+    correct: "Pete Rose",
+    choices: ["Pete Rose", "Ty Cobb", "Derek Jeter", "Ichiro Suzuki"],
+  },
 ];
 
 var questionIdx = 0;
@@ -157,12 +157,15 @@ function endQuiz() {
 
 function renderScores(){
     scoreList.innerHTML = "";
-    
+   
+    console.log(JSON.parse(localStorage.getItem("highscores")))
+    var leaders = JSON.parse(localStorage.getItem("highscores"));
+    console.log(leaders)
     for (var i = 0; i < leaders.length; i++) {
-        var leader = leaders[i];
-    
+        var leader = leaders[i] 
+        console.log(leader)
         var li = document.createElement("li");
-        li.textContent = leader;
+        li.textContent = leader.name +": " + leader.score;
         li.setAttribute("data-index", i);
         
         scoreList.appendChild(li);
@@ -170,34 +173,35 @@ function renderScores(){
 }
 
 function init() {
-    // TODO: What is the purpose of the following line of code?
-    var storedLeaders = JSON.parse(localStorage.getItem("todos"));
-    // TODO: Describe the functionality of the following `if` statement.
-    if (storedLeaders !== null) {
-      leaders = storedLeaders;
-    }
-    // TODO: Describe the purpose of the following line of code.
+    
     renderScores();
   }
 
-function storeScores() {
-    // TODO: Describe the purpose of the following line of code.
-    localStorage.setItem("highscores", JSON.stringify(leaders));
+function storeScores(score) {
+    console.log(JSON.parse(localStorage.getItem("highscores")))
+    var scores = JSON.parse(localStorage.getItem("highscores")) || []
+    scores.push(...score)
+    localStorage.setItem("highscores", JSON.stringify(scores));
   }
 
-  // TODO: Describe the purpose of the following line of code.
   submitButton.addEventListener("click", function(event) {
     event.preventDefault();
-    var nameText = nameInput.value.trim();
-   
-    leaders.push(nameText);
+    var nameText = {name: nameInput.value.trim(), score: correctAnswers};
+    var scores = JSON.parse(localStorage.getItem("highscores")) || []
+    scores.push(nameText);
     nameInput.value = "";
 
+    storeScores(scores);
     renderScores();
-    storeScores();
+    
   });
 
 //Starts quiz when button is clicked
 startBtn.addEventListener("click", startQuiz);
 
 init();
+
+function myLogs(log){
+    console.log(log)
+}
+myLogs(1)
