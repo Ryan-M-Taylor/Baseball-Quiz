@@ -9,12 +9,15 @@ var nameInput = document.querySelector("#name");
 var scoreForm = document.querySelector("#score-form");
 var submitButton = document.querySelector(".submit-button");
 var timeSection = document.querySelector("#time-left");
+var questionHolder = document.querySelector("#question-element");
+var answerHolder = document.querySelector("#answer-holder");
 
 var timer = "";
 var timerCount = 100;
 var gameEnd = true;
 var correctAnswers = 0;
 var leaders = [];
+var questionIdx = 0;
 var questionsBase = [
   {
     question: "Who led MLB in homeruns in 2022?",
@@ -83,9 +86,6 @@ var questionsBase = [
     },
 ];
 
-var questionIdx = 0;
-
-//function to ask quiz questions and allow user to select answer
 function startQuiz() {
   quizPrompt.classList.add("hide");
   quizSection.classList.remove("hide");
@@ -105,13 +105,8 @@ function startQuiz() {
 }
 
 function displayQuestion() {
-  console.log("displaying question");
-  var questionHolder = document.querySelector("#question-element");
-  console.log(questionHolder);
   questionHolder.innerHTML = questionsBase[questionIdx].question;
-  var answerHolder = document.querySelector("#answer-holder");
   answerHolder.innerHTML = "";
-  console.log(answerHolder);
   for (let i = 0; i < questionsBase[questionIdx].choices.length; i++) {
     var button = document.createElement("button");
     button.innerHTML = questionsBase[questionIdx].choices[i];
@@ -122,9 +117,6 @@ function displayQuestion() {
 
 function checkIfRight(event) {
   event.preventDefault();
-  console.log(event.target.innerHTML);
-  var currentQuestion = questionsBase[questionIdx];
-  console.log(currentQuestion);
   var answer = event.target.innerHTML;
   if (answer === questionsBase[questionIdx].correct) {
     alert("Correct! Good Job!");

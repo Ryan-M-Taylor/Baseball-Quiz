@@ -6,7 +6,7 @@ This is a baseball quiz application. The user is given 100 seconds to answer 10 
 
 ## Screenshot
 
-![Screenshot of application](assets/Images/_Users_ryantaylor_Desktop_Code_Code-Quiz_index.html.png)
+![Screenshot of application](assets/Images/code-quiz-screenshot.png)
 
 ## Link to application
 
